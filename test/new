@@ -1,0 +1,188 @@
+use std::io;
+
+fn main() {
+    println!("Welcome to the Sibling Information Program");
+
+    let mut input = String::new();
+
+    println!("Enter the number of siblings:");
+    io::stdin().read_line(&mut input).expect("Failed to read input");
+    let num_siblings: usize = input.trim().parse().expect("Please enter a valid number");
+    input.clear();
+
+    for i in 1..=num_siblings {
+        println!("\nEntering details for sibling {}:", i);
+
+        // Get the first name
+        println!("Enter the first name:");
+        io::stdin().read_line(&mut input).expect("Failed to read input");
+        let first_name = input.trim().to_string();
+        input.clear();
+
+        // Get the age
+        println!("Enter the age:");
+        io::stdin().read_line(&mut input).expect("Failed to read input");
+        let age: u8 = input.trim().parse().expect("Please enter a valid age");
+        input.clear();
+
+        // Get the gender
+        println!("Enter the gender:");
+        io::stdin().read_line(&mut input).expect("Failed to read input");
+        let gender = input.trim().to_string();
+        input.clear();
+
+        // Get the country of residence
+        println!("Enter the country of residence:");
+        io::stdin().read_line(&mut input).expect("Failed to read input");
+        let country = input.trim().to_string();
+        input.clear();
+
+        // Logic based on age
+        if age >= 18 {
+            println!("Is the sibling married, single, or in a relationship?");
+            io::stdin().read_line(&mut input).expect("Failed to read input");
+            let relationship_status = input.trim().to_string();
+            input.clear();
+
+            match relationship_status.as_str() {
+                "married" => {
+                    println!("Do they have any children? (yes/no)");
+                    io::stdin().read_line(&mut input).expect("Failed to read input");
+                    let has_children = input.trim().to_lowercase();
+                    input.clear();
+
+                    if has_children == "yes" {
+                        println!("How many children do they have?");
+                        io::stdin().read_line(&mut input).expect("Failed to read input");
+                        let num_children: usize = input.trim().parse().expect("Please enter a valid number");
+                        input.clear();
+
+                        for j in 1..=num_children {
+                            println!("\nEntering details for child {}:", j);
+
+                            println!("Enter the child's name:");
+                            io::stdin().read_line(&mut input).expect("Failed to read input");
+                            let child_name = input.trim().to_string();
+                            input.clear();
+
+                            println!("Enter the child's age:");
+                            io::stdin().read_line(&mut input).expect("Failed to read input");
+                            let child_age: u8 = input.trim().parse().expect("Please enter a valid age");
+                            input.clear();
+
+                            println!("Enter the child's school name:");
+                            io::stdin().read_line(&mut input).expect("Failed to read input");
+                            let school_name = input.trim().to_string();
+                            input.clear();
+
+                            println!("Child {}'s details: Name: {}, Age: {}, School: {}", j, child_name, child_age, school_name);
+                        }
+                    }
+                    println!("The family lives in the city of XYZ");
+                }
+                "single" => {
+                    println!("Are they a student or employed?");
+                    io::stdin().read_line(&mut input).expect("Failed to read input");
+                    let status = input.trim().to_lowercase();
+                    input.clear();
+
+                    if status == "student" {
+                        println!("Enter the university name:");
+                        io::stdin().read_line(&mut input).expect("Failed to read input");
+                        let university = input.trim().to_string();
+                        input.clear();
+
+                        println!("Enter the course of study:");
+                        io::stdin().read_line(&mut input).expect("Failed to read input");
+                        let course = input.trim().to_string();
+                        input.clear();
+
+                        println!("Enter the year of study:");
+                        io::stdin().read_line(&mut input).expect("Failed to read input");
+                        let year_of_study: u8 = input.trim().parse().expect("Please enter a valid year");
+                        input.clear();
+
+                        println!("Are they studying in their home country or abroad?");
+                        io::stdin().read_line(&mut input).expect("Failed to read input");
+                        let study_location = input.trim().to_string();
+                        input.clear();
+
+                        if study_location.to_lowercase() == "abroad" {
+                            println!("Enter the country of study:");
+                            io::stdin().read_line(&mut input).expect("Failed to read input");
+                            let country_of_study = input.trim().to_string();
+                            input.clear();
+
+                            println!("They are studying in {}", country_of_study);
+                        } else {
+                            println!("They are studying in their home country.");
+                        }
+                    } else if status == "employed" {
+                        println!("Is the job remote, on-site, or hybrid?");
+                        io::stdin().read_line(&mut input).expect("Failed to read input");
+                        let job_type = input.trim().to_string();
+                        input.clear();
+
+                        if job_type == "on-site" {
+                            println!("Enter the company name:");
+                            io::stdin().read_line(&mut input).expect("Failed to read input");
+                            let company = input.trim().to_string();
+                            input.clear();
+
+                            println!("Enter the job title:");
+                            io::stdin().read_line(&mut input).expect("Failed to read input");
+                            let job_title = input.trim().to_string();
+                            input.clear();
+
+                            println!("Enter the industry sector:");
+                            io::stdin().read_line(&mut input).expect("Failed to read input");
+                            let industry = input.trim().to_string();
+                            input.clear();
+
+                            println!("They work on-site at {}, as a {} in the {} sector.", company, job_title, industry);
+                        }
+                    }
+                }
+                "in a relationship" => {
+                    println!("Enter the duration of the relationship (in years):");
+                    io::stdin().read_line(&mut input).expect("Failed to read input");
+                    let duration: u8 = input.trim().parse().expect("Please enter a valid number");
+                    input.clear();
+
+                    println!("Enter the partner's name:");
+                    io::stdin().read_line(&mut input).expect("Failed to read input");
+                    let partner_name = input.trim().to_string();
+                    input.clear();
+
+                    println!("Do they live with their partner? (yes/no)");
+                    io::stdin().read_line(&mut input).expect("Failed to read input");
+                    let lives_with_partner = input.trim().to_lowercase();
+                    input.clear();
+
+                    if lives_with_partner == "yes" {
+                        println!("They reside in the city of ABC");
+                    }
+                }
+                _ => println!("Invalid input for relationship status"),
+            }
+        } else {
+            println!("Has the sibling completed their WAEC exams? (yes/no)");
+            io::stdin().read_line(&mut input).expect("Failed to read input");
+            let waec_status = input.trim().to_lowercase();
+            input.clear();
+
+            if waec_status == "yes" {
+                println!("Enter the secondary school attended:");
+                io::stdin().read_line(&mut input).expect("Failed to read input");
+                let school = input.trim().to_string();
+                input.clear();
+
+                println!("Enter the final grade:");
+                io::stdin().read_line(&mut input).expect("Failed to read input");
+                let final_grade = input.trim().to_string();
+                input.clear();
+
+                println!("Enter the year of completion:");
+                io::stdin().read_line(&mut input).expect("Failed to read input");
+                let year_of_completion: u}
+                }
